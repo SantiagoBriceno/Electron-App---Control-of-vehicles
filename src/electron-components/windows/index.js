@@ -3,7 +3,7 @@ const { misVehiculos } = require("../Scripts-Main/main-process.js");
 const path = require("path");
 const createWindow = () => {
   const principal = new BrowserWindow({
-    width: 800,
+    width: 1400,
     height: 800,
     webPreferences: {
       preload: path.join(__dirname, "listener.js"),

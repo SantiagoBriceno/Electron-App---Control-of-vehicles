@@ -8,6 +8,7 @@
 
     <!----======== CSS ======== -->
     <link rel="stylesheet" href="../assets/css/sidebar.css" />
+    <link rel="stylesheet" href="../assets/css/table.css" />
 
     <!----===== Boxicons CSS ===== -->
     <link
@@ -111,15 +112,24 @@
 
     <section class="home">
       <div class="text">
-        <h1>Bienvenido PAG 3</h1>
-        <p>
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illum,
-          ratione?
-        </p>
+        <h1>Vehiculos Registrados</h1>
+        <table id = 'listado'>
+          <thead>
+            <tr>
+              <th>Placa</th>
+              <th>Marca</th>
+              <th>Combustible</th>
+              <th>Modelo</th>
+              <th>Año</th>
+            </tr>
+          </thead>
+        </table>
         <a href="pag2.html">Pagina 2</a>
       </div>
     </section>
+
     <script src="../assets/extras/sidebar.js"></script>
     <script src="../scripts/salir.js"></script>
+    <script src="../scripts/misVehiculos.js"></script>
   </body>
 </html>

@@ -10,11 +10,7 @@ const misVehiculos = async () => {
         `Placa: ${value.placa} Marca: ${value.marca} modelo: ${value.modelo}`
       );
     }
-
-    new Notification({
-      title: "Electron APP",
-      body: `Vehiculos registrados: `,
-    }).show();
+    
     return result;
   } catch (error) {
     console.log(error);
