@@ -26,3 +26,7 @@ tbody tr{
 tr:nth-child(even){
     background-color: #e4e9f7;
 }
+
+tbody tr:hover{
+    background-color: lightsteelblue;
+}

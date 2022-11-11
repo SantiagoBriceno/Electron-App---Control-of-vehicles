@@ -59,6 +59,11 @@ app.whenReady().then(() => {
     // console.log(result);
   });
 
+  ipcMain.on('pasar-vehiculo-main', (event, data) =>{
+    console.log(data);
+    principal.webContents.send('pasar-vehiculo-render', data);
+  });
+
   //misVehiculos();
 
   app.on("activate", function () {

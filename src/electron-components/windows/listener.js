@@ -10,4 +10,9 @@ contextBridge.exposeInMainWorld("electronAPI", {
   eventoMisVehiculos: () => ipcRenderer.send("misVehiculos"),
 
   misVehiculos: (callback) => ipcRenderer.on("send-vehiculos", callback),
+
+  sendVehiculoMain: (vehiculo) => ipcRenderer.send('pasar-vehiculo-main', vehiculo),
+
+  sendVehiculoRender: (callBack) => ipcRenderer.on('pasar-vehiculo-render', callBack)
+
 });

@@ -5,12 +5,6 @@ window.electronAPI.eventoMisVehiculos();
 
 window.electronAPI.misVehiculos((event, data) => {
   const result = data;
-  for (let i of data) {
-    console.log(`
-        Placa: ${i.placa} 
-        Marca: ${i.marca} 
-        Modelo:${i.modelo}`);
-  }
 
   let cuerpoTabla = document.createElement('tbody');
 
@@ -44,11 +38,14 @@ window.electronAPI.misVehiculos((event, data) => {
 
     //añadimos logo de añadir modificación
     datos = document.createElement('td');
-    const image = document.createElement('img');
-    image.id = 'mas';
-    image.setAttribute('src', '../assets/img/mas.png');
+
+    //añadimos un evento, si da click pasa el dato de la fila. 
+    datos.addEventListener(('click'), (event) => {
+      window.electronAPI.sendVehiculoMain(elem);
+    });
+
     
-    datos.innerHTML = `<a href = #><i class='bx bx-plus-circle'></i></a>`;
+    datos.innerHTML = `<a href = 'pag4.html'><i class='bx bx-plus-circle'></i></a>`;
     fila.appendChild(datos);
 
     cuerpoTabla.appendChild(fila);
