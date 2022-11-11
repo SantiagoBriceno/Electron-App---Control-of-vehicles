@@ -1,5 +1,7 @@
-console.log('hola');
-window.electronAPI.sendVehiculoRender(data => {
+window.electronAPI.needVehiculo();
 
+window.electronAPI.vehiculoRender((event, data) => {
     console.log(data);
 });
+
+console.log("hola");

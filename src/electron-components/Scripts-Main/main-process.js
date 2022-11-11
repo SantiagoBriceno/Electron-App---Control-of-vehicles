@@ -17,6 +17,19 @@ const misVehiculos = async () => {
   }
 };
 
+const miVehiculo = async () =>{
+  try {
+    const conn = await getConection();
+    placa = await conn.query('SELECT * FROM temporal');
+    const result = await conn.query('SELECT * FROM vehiculo WHERE placa = ?', placa[0].placa);
+    await conn.query('DELETE FROM temporal WHERE placa = ?', placa[0].placa)
+    return result;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 module.exports = {
   misVehiculos,
+  miVehiculo
 };

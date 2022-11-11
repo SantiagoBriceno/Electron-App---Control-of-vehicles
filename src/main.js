@@ -14,7 +14,7 @@ const { createWindow } = require("./electron-components/windows/index.js");
 require("electron-reload")(__dirname);
 /*FUNCIONES IMPORTANTES DEL PROCESO MAIN CREADAS*/
 const {
-  misVehiculos,
+  misVehiculos, miVehiculo
 } = require("./electron-components/Scripts-Main/main-process.js");
 
 const menu = Menu.buildFromTemplate(menuTemplate);
@@ -59,12 +59,30 @@ app.whenReady().then(() => {
     // console.log(result);
   });
 
-  ipcMain.on('pasar-vehiculo-main', (event, data) =>{
-    console.log(data);
-    principal.webContents.send('pasar-vehiculo-render', data);
+  ipcMain.on("pasar-placa-main", async (event, data) => {
+    try {
+      
+      const conn = await getConection();
+      const result = await conn.query(`INSERT INTO temporal (placa) VALUES (?)`, data);
+      console.log("placa: ", data);
+
+    } catch (error) {
+      console.log(error);
+    }    
   });
 
-  //misVehiculos();
+  ipcMain.on('need-vehiculo', async (event, data) => {
+    try {
+      
+      const vehiculo = await miVehiculo();
+      principal.webContents.send('pasar-vehiculo-render', vehiculo);
+    } catch (error) {
+      console.log('error');
+    }
+  });
+  
+
+  
 
   app.on("activate", function () {
     // On macOS it's common to re-create a window in the app when the

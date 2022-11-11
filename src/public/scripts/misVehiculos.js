@@ -2,7 +2,7 @@ const action = document.getElementById("action");
 const listado = document.getElementById("listado");
 
 window.electronAPI.eventoMisVehiculos();
-
+console.log(window.electronAPI.misVehiculos);
 window.electronAPI.misVehiculos((event, data) => {
   const result = data;
 
@@ -40,19 +40,18 @@ window.electronAPI.misVehiculos((event, data) => {
     datos = document.createElement('td');
 
     //añadimos un evento, si da click pasa el dato de la fila. 
-    datos.addEventListener(('click'), (event) => {
-      window.electronAPI.sendVehiculoMain(elem);
-    });
-
     
     datos.innerHTML = `<a href = 'pag4.html'><i class='bx bx-plus-circle'></i></a>`;
+
     fila.appendChild(datos);
 
     cuerpoTabla.appendChild(fila);
+    
+    datos.addEventListener(('click'), (event) => {
+      window.electronAPI.sendPlacaMain(elem.placa);
+    });
+
   }
 
   listado.appendChild(cuerpoTabla);
-
 });
-
-
