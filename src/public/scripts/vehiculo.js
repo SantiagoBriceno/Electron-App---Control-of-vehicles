@@ -7,7 +7,7 @@ const combustible = document.getElementById("combustible");
 const formVehiculo = document.getElementById("formVehiculo");
 
 formVehiculo.addEventListener("submit", (event) => {
-  event.preventDefault();
+  // event.preventDefault();
 
   const vehiculo = {
     placa: placa.value,

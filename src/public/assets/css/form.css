@@ -13,7 +13,7 @@
   background: #24303c;
   padding: 30px;
   margin: auto;
-  margin-top: 100px;
+  margin-top: 50px;
   border-radius: 4px;
   font-family: "calibri";
   color: white;
@@ -32,7 +32,7 @@
   padding: 10px;
   border-radius: 4px;
   margin-bottom: 16px;
-  border: 1px solid #1f53c5;
+  border: 1px solid #708ac4;
   font-family: "calibri";
   font-size: 18px;
   color: white;
@@ -57,7 +57,7 @@
 
 .form-register .botons {
   width: 100%;
-  background: #1f53c5;
+  background: #6279aa;
   border: none;
   padding: 12px;
   color: white;

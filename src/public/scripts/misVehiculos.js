@@ -16,6 +16,7 @@ window.electronAPI.misVehiculos((event, data) => {
 
   for(let elem of data){
     let fila = document.createElement('tr');
+    fila.className = 'select';
     //AÑADIMOS PLACA
     let datos = document.createElement('td');
     datos.innerText = elem.placa;
@@ -41,9 +42,20 @@ window.electronAPI.misVehiculos((event, data) => {
     datos.innerText = elem.año;
     fila.appendChild(datos);
 
+    //añadimos logo de añadir modificación
+    datos = document.createElement('td');
+    const image = document.createElement('img');
+    image.id = 'mas';
+    image.setAttribute('src', '../assets/img/mas.png');
+    
+    datos.innerHTML = `<a href = #><i class='bx bx-plus-circle'></i></a>`;
+    fila.appendChild(datos);
+
     cuerpoTabla.appendChild(fila);
   }
 
   listado.appendChild(cuerpoTabla);
 
 });
+
+
