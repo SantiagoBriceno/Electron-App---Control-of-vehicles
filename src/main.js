@@ -73,9 +73,9 @@ app.whenReady().then(() => {
 
   ipcMain.on('need-vehiculo', async (event, data) => {
     try {
-      
       const vehiculo = await miVehiculo();
       principal.webContents.send('pasar-vehiculo-render', vehiculo);
+      
     } catch (error) {
       console.log('error');
     }
