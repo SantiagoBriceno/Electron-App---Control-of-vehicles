@@ -14,7 +14,10 @@ const { createWindow } = require("./electron-components/windows/index.js");
 require("electron-reload")(__dirname);
 /*FUNCIONES IMPORTANTES DEL PROCESO MAIN CREADAS*/
 const {
-  misVehiculos, miVehiculo
+  misVehiculos,
+  miVehiculo,
+  misModificaciones,
+  modificacionesDe
 } = require("./electron-components/Scripts-Main/main-process.js");
 
 const menu = Menu.buildFromTemplate(menuTemplate);
@@ -49,8 +52,9 @@ app.whenReady().then(() => {
     }
   });
 
-  ipcMain.on("salir", () => {
+  ipcMain.on("salir", async() => {
     app.quit();
+    await conn.query('DELETE FROM temporal WHERE placa = ?', placa[0].placa);
   });
 
   ipcMain.on("misVehiculos", async (event, data) => {
@@ -61,28 +65,45 @@ app.whenReady().then(() => {
 
   ipcMain.on("pasar-placa-main", async (event, data) => {
     try {
-      
       const conn = await getConection();
-      const result = await conn.query(`INSERT INTO temporal (placa) VALUES (?)`, data);
+      const result = await conn.query(
+        `INSERT INTO temporal (placa) VALUES (?)`,
+        data
+      );
       console.log("placa: ", data);
-
     } catch (error) {
       console.log(error);
-    }    
-  });
-
-  ipcMain.on('need-vehiculo', async (event, data) => {
-    try {
-      const vehiculo = await miVehiculo();
-      principal.webContents.send('pasar-vehiculo-render', vehiculo);
-      
-    } catch (error) {
-      console.log('error');
     }
   });
-  
 
-  
+  ipcMain.on("need-vehiculo", async (event, data) => {
+    try {
+      const vehiculo = await miVehiculo();
+      principal.webContents.send("pasar-vehiculo-render", vehiculo);
+    } catch (error) {
+      console.log("error");
+    }
+  });
+
+  ipcMain.on("need-modificaciones", async (event, data) => {
+    try {
+      const modificaciones = await misModificaciones();
+      principal.webContents.send('pasar-modificaciones', modificaciones);
+    } catch (error) {
+      console.log(error);
+    }
+    
+  });
+
+  ipcMain.on('need-modificaciones-de', async(event, data) => {
+    try {
+      const modificaciones = await modificacionesDe(data);
+      principal.webContents.send('send-modificaciones-de', modificaciones);
+    } catch (error) {
+      console.log(error);
+    }
+    
+  })
 
   app.on("activate", function () {
     // On macOS it's common to re-create a window in the app when the

@@ -1,0 +1,16 @@
+.form-register {
+    width: 400px;
+    padding: 30px;
+    margin: auto;
+    margin-top: 50px;
+    border-radius: 4px;
+    font-family: "calibri";
+    color: black;
+    
+  }
+  
+  .form-register h4 {
+    text-align: left;
+    font-size: 22px;
+    margin-bottom: 20px;
+  }
